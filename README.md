@@ -1,30 +1,82 @@
 ## Usage
-### pathlist.py
+### path.py
 
-BGP 経路情報からパスリストを抽出します．
+BGP 経路情報から AS パスを抽出します．
 
 ```
-Usage: pathlist.py -f {2013,2014,2015} [-s] <元データ> <パスリストの出力先>
+usage: path.py [-h] [-l] [-s] [-p <number>] <input_file> <output_file>
+
+Extract the AS paths from the specified BGP route information.
+
+positional arguments:
+  <input_file>          input the BGP route information from <input_file>
+  <output_file>         output the AS path list into <output_file>
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -l, --legacy          indicate the legacy format BGP route information
+  -s, --sort            sort the path list
+  -p <number>, --prefix <number>
+                        add the specified number to the start of the each path
 ```
 
-`-f` でフォーマットを指定．`-s` をつけるとソートして出力．
+古い形式の BGP 経路情報を使用する場合は，`--legacy` オプションを付与します．
+また，パスリストをソートして出力するには， `--sort` オプションを付与します．
 
 例えば，
 
 ```
-$ python pathlist.py --format 2015 --sort 2015.txt 2015-pathlist-sorted.txt
+$ python path.py --legacy --sort 2013.txt 2013-path.txt
 ```
+
+とすると，
+
+```
+234
+3456 4567 5678
+3567 6789
+ :
+```
+
+それぞれのパスの先頭に任意の AS 番号を付加する場合は，
+
+```
+$ python path.py --legacy --sort --prefix 1234 2013.txt 2013-path.txt
+```
+
+とすると，
+
+```
+1234 234
+1234 3456 4567 5678
+1234 3567 6789
+ :
+```
+
+というパスリストが得られます．
 
 ### corepath.py
 
 パスリストからコアパスを抽出します．
 
 ```
-Usage: corepath.py <入力パスリスト> <コアパスリストの出力先>
+usage: corepath.py [-h] [-s] <input_file> <output_file>
+
+Create a core AS path list with the specified AS path list
+
+positional arguments:
+  <input_file>   input the BGP route information from <input_file>
+  <output_file>  output the AS path list into <output_file>
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -s, --sort     sort the core path list
 ```
 
-例えば，
+コアパスのリストをソートして出力するには， `--sort` オプションを付与します．
+
+例えば，次のように使用します．
 
 ```
-$ python corepathlist.py 2015-pathlist-sorted.txt 2015-pathlist-core.txt
+$ python corepath.py --sort 2015-path.txt 2015-corepath.txt
 ```
