@@ -8,7 +8,8 @@ def path_list_2013(in_file, out_file, sort):
 
     line_number = 0
     for line in in_file:
-        if 6 <= line_number < 678321 or 678324 <= line_number < 697756:
+        line_number += 1
+        if 7 <= line_number <= 678321 or 678325 <= line_number <= 697756:
             assert len(line) >= 50
             column = line[50:-3].split()[1:]
             path = []
@@ -17,8 +18,6 @@ def path_list_2013(in_file, out_file, sort):
             if len(path) > 0 and path not in path_list:
                 path_list.append(path)
                 print(str(line_number) + ': ' + str(path))
-
-        line_number += 1
 
     if sort:
         path_list = sorted(path_list)
@@ -36,7 +35,8 @@ def path_list_2014(in_file, out_file, sort):
     skip = False
     line_number = 0
     for line in in_file:
-        if 6 <= line_number < 2053995:
+        line_number += 1
+        if 7 <= line_number <= 2053995:
             if not skip:
                 assert len(line) >= 68
                 column = line[68:-3].split()
@@ -49,8 +49,6 @@ def path_list_2014(in_file, out_file, sort):
                 skip = True
             else:
                 skip = False
-
-        line_number += 1
 
     if sort:
         path_list = sorted(path_list)
@@ -68,7 +66,8 @@ def path_list_2015(in_file, out_file, sort):
     skip = False
     line_number = 0
     for line in in_file:
-        if 6 <= line_number < 2406484:
+        line_number += 1
+        if 7 <= line_number <= 2293782 or 2293788 <= line_number <= 2406485:
             if not skip:
                 assert len(line) >= 68
                 column = line[68:-3].split()
@@ -81,8 +80,6 @@ def path_list_2015(in_file, out_file, sort):
                 skip = True
             else:
                 skip = False
-
-        line_number += 1
 
     if sort:
         path_list = sorted(path_list)
