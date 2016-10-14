@@ -115,3 +115,54 @@ optional arguments:
 ```
 $ python corepath.py -s 2015-path.txt 2015-corepath.txt
 ```
+
+### sort.py
+
+パスリストをソートして出力します．
+
+```
+usage: sort.py [-h] <input_file> <output_file>
+
+Sort the specified AS path list.
+
+positional arguments:
+  <input_file>   input the AS path list from <input_file>
+  <output_file>  output the sorted AS path list into <output_file>
+
+optional arguments:
+  -h, --help     show this help message and exit
+```
+
+### unique.py
+
+パス上の AS 番号の重複を削除したパスリストを出力します．
+
+```
+usage: unique.py [-h] <input_file> <output_file>
+
+Remove the AS number duplicates for the each paths with the specified AS path
+list.
+
+positional arguments:
+  <input_file>   input the AS path list from <input_file>
+  <output_file>  output the non-duplicate AS path list into <output_file>
+
+optional arguments:
+  -h, --help     show this help message and exit
+```
+
+### count.py
+
+パスリストを使ってパス数，出現する AS の数を調べたり，パス長のヒストグラムを作成します．
+
+```
+usage: count.py [-h] <input_file>
+
+Inspect the number of paths, ASes, and show the path length hist gram.
+
+positional arguments:
+  <input_file>  input the AS path list from <input_file>
+
+optional arguments:
+  -h, --help    show this help message and exit
+```
