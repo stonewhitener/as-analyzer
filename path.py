@@ -23,7 +23,7 @@ def as_path(input_file, output_file, legacy, unique, sort, prefix):
                     path.append(int(e.strip('{}')))
                 # remove duplicates if necessary
                 if unique:
-                    remove_duplicates(path)
+                    path = remove_duplicates(path)
                 # add the path to the path list
                 # if the path length is larger than 0 and the path is not found in the path list
                 if len(path) > 0 and path not in path_list:
