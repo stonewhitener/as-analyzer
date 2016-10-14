@@ -43,7 +43,7 @@ $ python path.py -l -u -s 2013.txt 2013-path.txt
 それぞれのパスの先頭に任意の AS 番号を付加する場合は，
 
 ```
-$ python path.py -l -s -p 1234 2013.txt 2013-path.txt
+$ python path.py -l -u -s -p 1234 2013.txt 2013-path.txt
 ```
 
 とすると，
