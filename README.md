@@ -4,7 +4,7 @@
 BGP 経路情報から AS パスを抽出します．
 
 ```
-usage: path.py [-h] [-l] [-s] [-p <number>] <input_file> <output_file>
+usage: path.py [-h] [-l] [-u] [-s] [-p <number>] <input_file> <output_file>
 
 Extract the AS paths from the specified BGP route information.
 
@@ -15,18 +15,20 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -l, --legacy          indicate the legacy format BGP route information
+  -u, --unique          remove the duplicates in the path
   -s, --sort            sort the path list
   -p <number>, --prefix <number>
                         add the specified number to the start of the each path
 ```
 
-古い形式の BGP 経路情報を使用する場合は，`--legacy` オプションを付与します．
-また，パスリストをソートして出力するには， `--sort` オプションを付与します．
+古い形式の BGP 経路情報を使用する場合は，`-l, --legacy` オプションを付与します．
+パス上の AS 番号の重複を除去するには，`-u, --unique` オプションを付与します．
+パスリストをソートして出力するには， `-s, --sort` オプションを付与します．
 
 例えば，
 
 ```
-$ python path.py --legacy --sort 2013.txt 2013-path.txt
+$ python path.py -l -u -s 2013.txt 2013-path.txt
 ```
 
 とすると，
@@ -41,7 +43,7 @@ $ python path.py --legacy --sort 2013.txt 2013-path.txt
 それぞれのパスの先頭に任意の AS 番号を付加する場合は，
 
 ```
-$ python path.py --legacy --sort --prefix 1234 2013.txt 2013-path.txt
+$ python path.py -l -s -p 1234 2013.txt 2013-path.txt
 ```
 
 とすると，
@@ -73,10 +75,10 @@ optional arguments:
   -s, --sort     sort the core path list
 ```
 
-コアパスのリストをソートして出力するには， `--sort` オプションを付与します．
+コアパスのリストをソートして出力するには， `-s, --sort` オプションを付与します．
 
 例えば，次のように使用します．
 
 ```
-$ python corepath.py --sort 2015-path.txt 2015-corepath.txt
+$ python corepath.py -s 2015-path.txt 2015-corepath.txt
 ```
