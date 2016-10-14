@@ -5,7 +5,7 @@ from argparse import ArgumentParser, FileType
 
 def core_path(input_file, output_file, sort):
     path_list = []
-    stub_set = set([])
+    stub_set = set()
     core_path_list = []
 
     # create a path list
