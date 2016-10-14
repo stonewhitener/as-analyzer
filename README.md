@@ -24,14 +24,48 @@ optional arguments:
 古い形式の BGP 経路情報を使用する場合は，`-l, --legacy` オプションを付与します．
 パス上の AS 番号の重複を除去するには，`-u, --unique` オプションを付与します．
 パスリストをソートして出力するには， `-s, --sort` オプションを付与します．
+それぞれのパスの先頭に任意の AS 番号を付加する場合は，`-p, --prefix` オプションを使います．
 
 例えば，
 
 ```
-$ python path.py -l -u -s 2013.txt 2013-path.txt
+$ python path.py -l 2013.txt 2013-path.txt
+もしくは
+$ python path.py --legacy 2013.txt 2013-path.txt
 ```
 
 とすると，
+
+```
+3567 6789
+234
+3456 4567 4567 5678
+ :
+```
+
+というパスリストが得られます．
+パス上の AS 番号の重複を除去する場合は，次のようにします．
+
+```
+$ python path.py -lu 2013.txt 2013-path.txt
+もしくは
+$ python path.py --legacy --unique 2013.txt 2013-path.txt
+```
+
+```
+3567 6789
+234
+3456 4567 5678
+ :
+```
+
+さらに，これをソートして出力する場合は，次のようにします．
+
+```
+$ python path.py -lus 2013.txt 2013-path.txt
+もしくは
+$ python path.py --legacy --unique --sort 2013.txt 2013-path.txt
+```
 
 ```
 234
@@ -40,13 +74,13 @@ $ python path.py -l -u -s 2013.txt 2013-path.txt
  :
 ```
 
-それぞれのパスの先頭に任意の AS 番号を付加する場合は，
+それぞれのパスの先頭に任意の AS 番号を付加する場合は，次のようにします．
 
 ```
-$ python path.py -l -u -s -p 1234 2013.txt 2013-path.txt
+$ python path.py -lusp1234 2013.txt 2013-path.txt
+もしくは
+$ python path.py --legacy --unique --sort --prefix 1234 2013.txt 2013-path.txt
 ```
-
-とすると，
 
 ```
 1234 234
@@ -55,7 +89,6 @@ $ python path.py -l -u -s -p 1234 2013.txt 2013-path.txt
  :
 ```
 
-というパスリストが得られます．
 
 ### corepath.py
 
