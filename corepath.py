@@ -5,7 +5,7 @@ from argparse import ArgumentParser, FileType
 
 def core_path(input_file, output_file, sort):
     path_list = []
-    stub_list = []
+    stub_set = set([])
     core_path_list = []
 
     # create a path list
@@ -17,23 +17,21 @@ def core_path(input_file, output_file, sort):
     # create a stub AS list
     for path in path_list:
         stub_candidate = path[-1]
-        if stub_candidate not in stub_list:
+        if stub_candidate not in stub_set:
             # add a stub AS candidate to the stub list
-            stub_list.append(stub_candidate)
+            stub_set.add(stub_candidate)
 
-    for stub_candidate in stub_list[:]:
+    for stub_candidate in list(stub_set):
         for path in path_list:
             if stub_candidate in path[:-1]:
                 # remove the non-stub AS from the stub list
-                stub_list.remove(stub_candidate)
+                stub_set.remove(stub_candidate)
                 break
-
-    stub_list = sorted(stub_list)
 
     # create a core path list without any stubs
     for path in path_list:
         # if the end of the pass is a stub
-        if path[-1] in stub_list:
+        if path[-1] in stub_set:
             if len(path[:-1]) > 0 and path[:-1] not in core_path_list:
                 core_path_list.append(path[:-1])
         else:
