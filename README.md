@@ -1,7 +1,15 @@
-## Usage
-### path.py
+# AS Analyzer
 
-BGP 経路情報から AS パスを抽出します．
+An AS path analyzer for the `show route terse` command of Junos OS.
+
+Junos OS の `show route terse` コマンドの結果から AS パスを解析します．
+
+https://www.juniper.net/documentation/en_US/junos16.1/topics/reference/command-summary/show-route-terse.html
+
+# Usage
+## path.py
+
+`show route terse` コマンドで得られる BGP 経路情報から AS パスを抽出します．
 
 ```
 usage: path.py [-h] [-l] [-u] [-s] [-p <number>] <input_file> <output_file>
