@@ -98,7 +98,7 @@ $ python path.py --legacy --unique --sort --prefix 1234 2013.txt 2013-path.txt
 ```
 
 
-### corepath.py
+## corepath.py
 
 パスリストからコアパスを抽出します．
 
@@ -124,7 +124,7 @@ optional arguments:
 $ python corepath.py -s 2015-path.txt 2015-corepath.txt
 ```
 
-### sort.py
+## sort.py
 
 パスリストをソートして出力します．
 
@@ -141,7 +141,7 @@ optional arguments:
   -h, --help     show this help message and exit
 ```
 
-### unique.py
+## unique.py
 
 パス上の AS 番号の重複を削除したパスリストを出力します．
 
@@ -159,7 +159,7 @@ optional arguments:
   -h, --help     show this help message and exit
 ```
 
-### count.py
+## count.py
 
 パスリストを使ってパス数，出現する AS の数を調べたり，パス長のヒストグラムを作成します．
 
