@@ -21,12 +21,10 @@ def core_path(input_file, output_file, sort):
             # add a stub AS candidate to the stub list
             stub_set.add(stub_candidate)
 
-    for stub_candidate in list(stub_set):
-        for path in path_list:
-            if stub_candidate in path[:-1]:
-                # remove the non-stub AS from the stub list
-                stub_set.remove(stub_candidate)
-                break
+    for path in path_list:
+        if path[:-1] in stub_set:
+            # remove the non-stub AS from the stub list
+            stub_set.remove(path[:-1])
 
     # create a core path list without any stubs
     for path in path_list:
