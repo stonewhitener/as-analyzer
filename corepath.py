@@ -17,14 +17,14 @@ def core_path(input_file, output_file, sort):
     # create a stub AS list
     for path in path_list:
         stub_candidate = path[-1]
-        if stub_candidate not in stub_set:
-            # add a stub AS candidate to the stub list
-            stub_set.add(stub_candidate)
+        # add a stub AS candidate to the stub list
+        stub_set.add(stub_candidate)
 
     for path in path_list:
-        if path[:-1] in stub_set:
-            # remove the non-stub AS from the stub list
-            stub_set.remove(path[:-1])
+        for asn in path[:-1]:
+            if asn in stub_set:
+                # remove the non-stub AS from the stub list
+                stub_set.remove(asn)
 
     # create a core path list without any stubs
     for path in path_list:
