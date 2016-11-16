@@ -3,11 +3,11 @@
 from argparse import ArgumentParser, FileType
 
 
-def count(input_file):
+def main(input_file):
     path_list = []
     as_set = set()
 
-    # create a path list
+    # create the path list
     for line in input_file:
         path = list(map(int, line.split()))
         if len(path) > 0:
@@ -16,7 +16,7 @@ def count(input_file):
     # calc the max path length
     max_path_length = max([len(path) for path in path_list])
     # prepare the path length hist gram
-    path_length_hist_gram = [0 for x in range(max_path_length + 1)]
+    path_length_hist_gram = [0 for _ in range(max_path_length + 1)]
 
     for path in path_list:
         # union the as_set
@@ -40,4 +40,4 @@ if __name__ == '__main__':
                         help='input the AS path list from <input_file>')
     args = parser.parse_args()
 
-    count(args.input_file)
+    main(args.input_file)

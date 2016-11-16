@@ -3,10 +3,10 @@
 from argparse import ArgumentParser, FileType
 
 
-def sort(input_file, output_file):
+def main(input_file, output_file):
     path_list = []
 
-    # create a path list
+    # create the path list
     for line in input_file:
         path = list(map(int, line.split()))
         if len(path) > 0 and path not in path_list:
@@ -30,4 +30,4 @@ if __name__ == '__main__':
                         help='output the sorted AS path list into <output_file>')
     args = parser.parse_args()
 
-    sort(args.input_file, args.output_file)
+    main(args.input_file, args.output_file)

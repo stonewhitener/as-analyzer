@@ -27,12 +27,14 @@ optional arguments:
   -s, --sort            sort the path list
   -p <number>, --prefix <number>
                         add the specified number to the start of the each path
+  -i, --ignore          ignore the IPv6 route information
 ```
 
 古い形式の BGP 経路情報を使用する場合は，`-l, --legacy` オプションを付与します．
 パス上の AS 番号の重複を除去するには，`-u, --unique` オプションを付与します．
 パスリストをソートして出力するには， `-s, --sort` オプションを付与します．
 それぞれのパスの先頭に任意の AS 番号を付加する場合は，`-p, --prefix` オプションを使います．
+IPv6 の経路情報を無視するには，`-i, --ignore` オプションを付与します．
 
 例えば，
 
@@ -152,6 +154,24 @@ Remove the AS number duplicates for the each paths with the specified AS path
 list.
 
 positional arguments:
+  <input_file>   input the AS path list from <input_file>
+  <output_file>  output the non-duplicate AS path list into <output_file>
+
+optional arguments:
+  -h, --help     show this help message and exit
+```
+
+## prefix.py
+
+それぞれのパスの先頭に任意の AS 番号を付与します．
+
+```
+usage: prefix.py [-h] <prefix> <input_file> <output_file>
+
+Add the specified ASN to the start of the each path.
+
+positional arguments:
+  <prefix>       the specified ASN
   <input_file>   input the AS path list from <input_file>
   <output_file>  output the non-duplicate AS path list into <output_file>
 

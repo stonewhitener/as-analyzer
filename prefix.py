@@ -3,14 +3,14 @@
 from argparse import ArgumentParser, FileType
 
 
-def main(input_file, output_file):
+def main(prefix, input_file, output_file):
     path_list = []
 
     # create the path list
     for line in input_file:
         path = list(map(int, line.split()))
-        # remove duplicates
-        path = remove_duplicates(path)
+        # insert the ASN at the start of the path
+        path.insert(0, prefix)
         if len(path) > 0 and path not in path_list:
             path_list.append(path)
 
@@ -32,11 +32,12 @@ def remove_duplicates(duplicated):
 
 if __name__ == '__main__':
     parser = ArgumentParser(
-        description='Remove the AS number duplication for the each paths with the specified AS path list.')
+        description='Add the specified ASN to the start of the each path.')
+    parser.add_argument('prefix', type=int, metavar='<prefix>', help='the specified ASN')
     parser.add_argument('input_file', type=FileType('r'), metavar='<input_file>',
                         help='input the AS path list from <input_file>')
     parser.add_argument('output_file', type=FileType('w'), metavar='<output_file>',
                         help='output the non-duplicate AS path list into <output_file>')
     args = parser.parse_args()
 
-    main(args.input_file, args.output_file)
+    main(args.prefix, args.input_file, args.output_file)

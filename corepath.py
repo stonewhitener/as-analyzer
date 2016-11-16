@@ -3,18 +3,18 @@
 from argparse import ArgumentParser, FileType
 
 
-def core_path(input_file, output_file, sort):
+def main(input_file, output_file, sort):
     path_list = []
     stub_set = set()
     core_path_list = []
 
-    # create a path list
+    # create the path list
     for line in input_file:
         path = list(map(int, line.split()))
         if len(path) > 0 and path not in path_list:
             path_list.append(path)
 
-    # create a stub AS list
+    # create the stub AS list
     for path in path_list:
         # add a stub AS candidate to the stub list
         stub_set.add(path[-1])
@@ -25,7 +25,7 @@ def core_path(input_file, output_file, sort):
                 # remove the non-stub AS from the stub list
                 stub_set.remove(asn)
 
-    # create a core path list without any stubs
+    # create the core path list without any stubs
     for path in path_list:
         # if the end of the pass is a stub
         if path[-1] in stub_set:
@@ -56,4 +56,4 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--sort', action='store_true', help='sort the core path list')
     args = parser.parse_args()
 
-    core_path(args.input_file, args.output_file, args.sort)
+    main(args.input_file, args.output_file, args.sort)

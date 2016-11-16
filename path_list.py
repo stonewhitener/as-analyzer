@@ -3,13 +3,15 @@
 from argparse import ArgumentParser, FileType
 
 
-def as_path(input_file, output_file, legacy, unique, sort, prefix):
+def main(input_file, output_file, legacy, unique, sort, prefix, ignore):
     path_list = []
     offset = 50 if legacy else 68
 
-    line_number = 0
     for line in input_file:
-        line_number += 1
+        # ignore the IPv6 route information if necessary
+        if ignore and 'inet6' in line:
+            break
+
         # if the line has 'Next hop' column and 'AS path' column
         if len(line) >= offset:
             # extract an 'AS path' column
@@ -28,8 +30,6 @@ def as_path(input_file, output_file, legacy, unique, sort, prefix):
                 # if the path length is larger than 0 and the path is not found in the path list
                 if len(path) > 0 and path not in path_list:
                     path_list.append(path)
-                    # DEBUG
-                    # print(str(line_number) + ': ' + str(path))
 
     # sort the path list if necessary
     if sort:
@@ -61,7 +61,8 @@ if __name__ == '__main__':
     parser.add_argument('-u', '--unique', action='store_true', help='remove the duplicates in the path')
     parser.add_argument('-s', '--sort', action='store_true', help='sort the path list')
     parser.add_argument('-p', '--prefix', type=int, metavar='<number>',
-                        help='add the specified number to the start of the each path')
+                        help='add the specified ASN to the start of the each path')
+    parser.add_argument('-i', '--ignore', action='store_true', help='ignore the IPv6 route information')
     args = parser.parse_args()
 
-    as_path(args.input_file, args.output_file, args.legacy, args.unique, args.sort, args.prefix)
+    main(args.input_file, args.output_file, args.legacy, args.unique, args.sort, args.prefix, args.ignore)
