@@ -107,7 +107,7 @@ $ python path.py --legacy --unique --sort --prefix 1234 2013.txt 2013-path.txt
 ```
 usage: corepath.py [-h] [-s] <input_file> <output_file>
 
-Create a core AS path list with the specified AS path list
+Create a core path list with the specified AS path list
 
 positional arguments:
   <input_file>   input the BGP route information from <input_file>
@@ -177,6 +177,25 @@ positional arguments:
 
 optional arguments:
   -h, --help     show this help message and exit
+```
+
+
+## edge.py
+
+パスリストからエッジリストを作成します．
+
+```
+usage: edge.py [-h] [-s] <input_file> <output_file>
+
+Create the edge list with specified path list.
+
+positional arguments:
+  <input_file>   input the AS path list from <input_file>
+  <output_file>  output the edge list into <output_file>
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -s, --sort     sort the edge list
 ```
 
 ## count.py

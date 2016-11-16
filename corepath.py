@@ -48,7 +48,7 @@ def main(input_file, output_file, sort):
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description='Create a core AS path list with the specified AS path list')
+    parser = ArgumentParser(description='Create a core path list with the specified AS path list')
     parser.add_argument('input_file', type=FileType('r'), metavar='<input_file>',
                         help='input the BGP route information from <input_file>')
     parser.add_argument('output_file', type=FileType('w'), metavar='<output_file>',

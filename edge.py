@@ -41,7 +41,7 @@ if __name__ == '__main__':
                         help='input the AS path list from <input_file>')
     parser.add_argument('output_file', type=FileType('w'), metavar='<output_file>',
                         help='output the edge list into <output_file>')
-    parser.add_argument('-s', '--sort', action='store_true', help='sort the path list')
+    parser.add_argument('-s', '--sort', action='store_true', help='sort the edge list')
     args = parser.parse_args()
 
     main(args.input_file, args.output_file, args.sort)
