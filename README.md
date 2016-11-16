@@ -12,7 +12,7 @@ https://www.juniper.net/documentation/en_US/junos16.1/topics/reference/command-s
 `show route terse` コマンドで得られる BGP 経路情報から AS パスを抽出します．
 
 ```
-usage: path.py [-h] [-l] [-u] [-s] [-p <number>] <input_file> <output_file>
+usage: path.py [-h] [-l] [-u] [-s] [-p <number>] [-i] <input_file> <output_file>
 
 Extract the AS paths from the specified BGP route information.
 
