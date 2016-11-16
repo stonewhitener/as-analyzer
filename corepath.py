@@ -16,9 +16,8 @@ def core_path(input_file, output_file, sort):
 
     # create a stub AS list
     for path in path_list:
-        stub_candidate = path[-1]
         # add a stub AS candidate to the stub list
-        stub_set.add(stub_candidate)
+        stub_set.add(path[-1])
 
     for path in path_list:
         for asn in path[:-1]:
